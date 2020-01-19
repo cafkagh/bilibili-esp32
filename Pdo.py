@@ -132,14 +132,10 @@ class Pdo:
         for line in data:
             new_line = []
             for key in keys:
-                if type(line[key]).__name__ == 'int':
+                if type(line[key]).__name__ == 'unicode':
+                    new_line_data = line[key].encode("utf-8")
+                elif type(line[key]).__name__ != 'str':
                     new_line_data = str(line[key])
-                elif type(line[key]).__name__ == 'bool':
-                    new_line_data = str(line[key])
-                elif type(line[key]).__name__ == 'float':
-                    new_line_data = str(line[key])
-                elif type(line[key]).__name__ == 'unicode':
-                    new_line_data = line[key].replace("'", "’")
                 else:
                     new_line_data = line[key]
 
